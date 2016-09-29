@@ -13,9 +13,9 @@ Error Code  | Error Message   | Relevant Resources  | Parameters
 
 # Preview
 
-[Image1](images/image1.png)
-[Image2](images/image2.png)
-[Image3](images/image3.png)
-[Image4](images/image4.png)
-[Image5](images/image5.png)
-[Image6](images/image6.png)
+![Image1](images/image1.png)
+![Image2](images/image2.png)
+![Image3](images/image3.png)
+![Image4](images/image4.png)
+![Image5](images/image5.png)
+![Image6](images/image6.png)
