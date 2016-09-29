@@ -8,7 +8,12 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var CarSchema   = new Schema({
-    license: String
+    license: String,
+    make: String,
+    model: String,
+    color: String,
+    doorCount: Number,
+    driver : String
 });
 
 module.exports = mongoose.model('Car', CarSchema);
