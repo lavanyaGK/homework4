@@ -11,6 +11,31 @@ Error Code  | Error Message   | Relevant Resources  | Parameters
 1007 | Error while inserting resource name {0} to database, duplicate object | All Resources | `0 - Resource Name`
 1008 | Error while updating resource name {0} | All Resources | `0 - Resource Name`
 
+# Test Cases
+```
+Lavanyas-MacBook:transportation-express-api lavanyagh$ ./node_modules/.bin/mocha -u exports tests
+Service running on port 8080
+
+
+  1) car_should_return_cars
+[Error: expected 200 "OK", got 400 "Bad Request"]
+{ statusCode: 400,
+  errorCode: 1002,
+  errorMessage: 'Invalid Indentifier for resource name Car given, Resource Not Found' }
+  2) car_should_return_json
+[Error: expected 200 "OK", got 400 "Bad Request"]
+{ statusCode: 400,
+  errorCode: 1001,
+  errorMessage: 'Invalid resource name car given car' }
+  ✓ car_should_create_car
+  3) car_create_action_should_retrieve_data
+
+  1 passing (127ms)
+  3 failing
+
+
+```
+
 # Preview
 
 ![Image1](images/image1.png)
