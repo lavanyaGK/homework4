@@ -25,11 +25,6 @@ var ecodes = {
         "errorCode" : 1005,
         "errorMessage" : "Database Error while trying to %s resource, %s: %s"
     },
-    1006 : {
-        "statusCode" : 400,
-        "errorCode" : 1006,
-        "errorMessage" : "Invalid Request Error while trying to %s resource, %s: %s"
-    },
     1007 : {
         "statusCode" : 400,
         "errorCode" : 1007,
