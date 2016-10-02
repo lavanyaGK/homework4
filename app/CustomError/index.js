@@ -3,43 +3,58 @@ var ecodes = {
     1001 : {
         "statusCode" : 400,
         "errorCode" : 1001,
-        "errorMessage" : "Invalid resource name %s given"
+        "errorMessage" : "Invalid resource, %s, given"
     },
     1002 : {
         "statusCode" : 400,
         "errorCode" : 1002,
-        "errorMessage" : "Invalid Indentifier for resource name %s given, Resource Not Found"
+        "errorMessage" : "Invalid Identifier for resource, %s, Resource Instance Not Found"
     },
     1003 : {
         "statusCode" : 400,
         "errorCode" : 1003,
-        "errorMessage" : "Invalid Property %s for resource name %s given"
+        "errorMessage" : "Invalid Property %s for resource, %s,  given"
     },
     1004 : {
-        "statusCode" : 400,
+        "statusCode" : 422,
         "errorCode" : 1004,
-        "errorMessage" : "Error while trying to insert resource name %s into the database, Missing Required Parameters '%s'"
+        "errorMessage" : "Error while trying to insert resource, %s, into the database. Missing Required Properties: %s"
     },
     1005 : {
-        "statusCode" : 400,
+        "statusCode" : 500,
         "errorCode" : 1005,
-        "errorMessage" : "Error while trying to read resource name %s from the database, Resource Not Found"
+        "errorMessage" : "Database Error while trying to %s resource, %s: %s"
     },
     1006 : {
         "statusCode" : 400,
         "errorCode" : 1006,
-        "errorMessage" : "Error while trying to delete resource %s from the database"
+        "errorMessage" : "Invalid Request Error while trying to %s resource, %s: %s"
     },
     1007 : {
         "statusCode" : 400,
         "errorCode" : 1007,
-        "errorMessage" : "Error while inserting resource name %s to database, duplicate object"
+        "errorMessage" : "Error while inserting an instance of the resource, %s, to database, duplicate %s found"
     },
     1008 : {
         "statusCode" : 400,
         "errorCode" : 1008,
-        "errorMessage" : "Error while updating resource name {0}"
+        "errorMessage" : "Error while updating resource, %s, no valid property in the POST request"
     },
+    1009 : {
+        "statusCode" : 400,
+        "errorCode" : 1009,
+        "errorMessage" : "Invalid property value error for %s : %s"
+    },
+    2001 : {
+        "statusCode" : 401,
+        "errorCode" : 2001,
+        "errorMessage" : "Ride has not started yet, current status: %s"
+    },
+    2002 : {
+        "statusCode" : 501,
+        "errorCode" : 2002,
+        "errorMessage" : "Internal error, Ride route is empty"
+    }
 };
 
 module.exports = ecodes;

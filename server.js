@@ -25,17 +25,21 @@ var router = require('./routes/router');
 var cars = require('./routes/cars');
 var drivers = require('./routes/drivers');
 var passengers = require('./routes/passengers');
+var paymentAccounts = require('./routes/paymentaccounts');
+var rides = require('./routes/rides');
 
 app.use('/api', cars);
 app.use('/api', drivers);
 app.use('/api', passengers);
+app.use('/api', paymentAccounts);
+app.use('/api', rides);
 app.use('/api', router);
 /** END: Express Routes Definition */
 
 app.use('/api/:resourcename', function(req, res, next){
     //No resource found error
-    res.status(eCodes["1001"].statusCode);
-    var errorObj = eCodes["1001"];
+    var errorObj = Object.assign({}, eCodes['1001']);
+    res.status(errorObj.statusCode);
     errorObj.errorMessage = util.format(errorObj.errorMessage, req.params.resourcename);
     res.send(errorObj);
 });
