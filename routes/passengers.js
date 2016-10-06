@@ -93,11 +93,18 @@ router.route('/passengers')
 
         passenger.save(function(err) {
             if (err) {
-                var errorObj = Object.assign({}, eCodes['1005']);
-                errorObj.errorMessage = util.format(errorObj.errorMessage, "insert into", "Passenger", err);
-                res.status(errorObj.statusCode).send(errorObj);
+                if (err.name === 'ValidationError') {
+                    var errorObj = Object.assign({}, eCodes['1009']);
+                    errorObj.errorMessage = util.format(errorObj.errorMessage, "Passenger", err);
+                    res.status(errorObj.statusCode).send(errorObj);
+                } else {
+                    var errorObj = Object.assign({}, eCodes['1005']);
+                    errorObj.errorMessage = util.format(errorObj.errorMessage, "insert into", "Passenger", err);
+                    res.status(errorObj.statusCode).send(errorObj);
+                }
             } else {
-                res.status(201).json({"message" : "Passenger Created", "PassengerCreated" : passenger});
+                //res.status(201).json({"message" : "Passenger Created", "PassengerCreated" : passenger});
+                res.status(201).json(passenger);
             }
         });
     });
@@ -174,7 +181,8 @@ router.route('/passengers/:passenger_id')
                         errorObj.errorMessage = util.format(errorObj.errorMessage, "update", "Passenger", err);
                         res.status(errorObj.statusCode).send(errorObj);
                     } else {
-                        res.json({"message" : "Passenger Updated", "PassengerUpdated" : Passenger});
+                        //res.json({"message" : "Passenger Updated", "PassengerUpdated" : Passenger});
+                        res.status(201).json(passenger);
                     }
                 });
             }

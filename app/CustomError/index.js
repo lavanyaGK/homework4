@@ -6,7 +6,7 @@ var ecodes = {
         "errorMessage" : "Invalid resource, %s, given"
     },
     1002 : {
-        "statusCode" : 400,
+        "statusCode" : 404,
         "errorCode" : 1002,
         "errorMessage" : "Invalid Identifier for resource, %s, Resource Instance Not Found"
     },
@@ -16,7 +16,7 @@ var ecodes = {
         "errorMessage" : "Invalid Property %s for resource, %s,  given"
     },
     1004 : {
-        "statusCode" : 422,
+        "statusCode" : 400,
         "errorCode" : 1004,
         "errorMessage" : "Error while trying to insert resource, %s, into the database. Missing Required Properties: %s"
     },
@@ -38,7 +38,7 @@ var ecodes = {
     1009 : {
         "statusCode" : 400,
         "errorCode" : 1009,
-        "errorMessage" : "Invalid property value error for %s : %s"
+        "errorMessage" : "Validation error for %s : %s"
     },
     2001 : {
         "statusCode" : 401,

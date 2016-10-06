@@ -95,11 +95,18 @@ router.route('/drivers')
 
         driver.save(function(err) {
             if (err) {
-                var errorObj = Object.assign({}, eCodes['1005']);
-                errorObj.errorMessage = util.format(errorObj.errorMessage, "insert into", "Driver", err);
-                res.status(errorObj.statusCode).send(errorObj);
+                if (err.name === 'ValidationError') {
+                    var errorObj = Object.assign({}, eCodes['1009']);
+                    errorObj.errorMessage = util.format(errorObj.errorMessage, "Driver", err);
+                    res.status(errorObj.statusCode).send(errorObj);
+                } else {
+                    var errorObj = Object.assign({}, eCodes['1005']);
+                    errorObj.errorMessage = util.format(errorObj.errorMessage, "insert into", "Driver", err);
+                    res.status(errorObj.statusCode).send(errorObj);
+                }
             } else {
-                res.status(201).json({"message" : "Driver Created", "DriverCreated" : driver});
+                //res.status(201).json({"message" : "Driver Created", "DriverCreated" : driver});
+                res.status(201).json(driver);
             }
         });
     });
@@ -183,7 +190,9 @@ router.route('/drivers/:driver_id')
                         errorObj.errorMessage = util.format(errorObj.errorMessage, "update", "Driver", err);
                         res.status(errorObj.statusCode).send(errorObj);
                     } else {
-                        res.json({"message" : "Driver Updated", "DriverUpdated" : Driver});
+                        //res.json({"message" : "Driver Updated", "DriverUpdated" : Driver});
+                        res.status(201).json(driver);
+
                     }
                 });
             }

@@ -17,14 +17,15 @@ doorCount (Number 1-8)
 */
 var CarSchema   = new Schema({
     license: { type: String, maxlength: 10, unique: true, required: true },
-    make: { type: String, maxlength: 18 },
-    model: { type: String, maxlength: 18 },
-    doorCount: { type: Number, min:1, max:8 },
+    make: { type: String, maxlength: 18, required: true },
+    model: { type: String, maxlength: 18, required: true },
+    doorCount: { type: Number, min:1, max:8, required: true},
     driver : { type: Schema.Types.ObjectId, ref: 'Driver', required:true}
 });
 
 module.exports = mongoose.model('Car', CarSchema);
 
+/*
 CarSchema.path('driver').validate(function (value, respond) {
     Driver.findOne({_id: value}, function (err, doc) {
         if (err || !doc) {
@@ -35,3 +36,4 @@ CarSchema.path('driver').validate(function (value, respond) {
     });
 
 }, 'Invalid reference to driver');
+*/

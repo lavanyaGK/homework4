@@ -111,7 +111,8 @@ router.route('/cars')
                     res.status(errorObj.statusCode).send(errorObj);                
                 }
             } else {
-                res.status(201).json({"message" : "Car Created", "carCreated" : car});
+                // res.status(201).json({"message" : "Car Created", "carCreated" : car});
+                res.status(201).json(car);
             }
         });
     });
@@ -139,7 +140,7 @@ router.route('/cars/:car_id')
                 errorObj.errorMessage = util.format(errorObj.errorMessage, "read from", "Car", err);
                 res.status(errorObj.statusCode).send(errorObj);
             } else {
-                res.json(driver);
+                res.json(car);
             }
         });
     })
@@ -185,7 +186,8 @@ router.route('/cars/:car_id')
                         errorObj.errorMessage = util.format(errorObj.errorMessage, "update", "Car", err);
                         res.status(errorObj.statusCode).send(errorObj);
                     } else {
-                        res.json({"message" : "Car Updated", "CarUpdated" : Car});
+                        //res.json({"message" : "Car Updated", "CarUpdated" : Car});
+                        res.json(car);
                     }
                 });
             }
