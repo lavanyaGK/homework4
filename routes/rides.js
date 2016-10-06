@@ -31,6 +31,20 @@ function validateRequest(req, res) {
     return 1;
 }
 
+function validateAppendPointRequest(req, res) {
+    var keyValue = ['lat', 'long'];
+    for (var key in req.body) {
+        // Check if the key property in the request is a valid one.
+        if (keyValue.indexOf(key) == -1) {
+            var errorObj = Object.assign({}, eCodes['1003']);
+            errorObj.errorMessage = util.format(errorObj.errorMessage, key, "Rides");
+            res.status(errorObj.statusCode).send(errorObj);
+            return 0;
+        }
+    }
+    return 1;
+}
+
 function validateRequiredFields(req, res) {
     for (var key in requiredFields) {
         if (!req.body[requiredFields[key]]) {
@@ -65,6 +79,37 @@ router.route('/rides/:id/routePoints')
                 res.json(ride.route);
             }
         });
+    })
+    .post(function(req, res) {
+        if (validateAppendPointRequest(req, res) != 1)
+            return;
+        Ride.findById(req.params.ride_id, function(err, ride) {
+            if(err) {
+                var errorObj = Object.assign({}, eCodes['1005']);
+                errorObj.errorMessage = util.format(errorObj.errorMessage, "update", "Ride", err);
+                res.status(errorObj.statusCode).send(errorObj);
+            } else {
+                if (!ride) {
+                    var errorObj = Object.assign({}, eCodes['1002']);
+                    errorObj.errorMessage = util.format(errorObj.errorMessage, "Ride");
+                    res.status(errorObj.statusCode).send(errorObj);
+                    return;
+                }
+                // Append the routePoint to the existing route
+                ride.route.push({"long":req.body.long, "lat":req.body.lat});
+                res.json(ride.route);
+                ride.save(function(err){
+                    if (err) {
+                        var errorObj = Object.assign({}, eCodes['1005']);
+                        errorObj.errorMessage = util.format(errorObj.errorMessage, "update", "Ride", err);
+                        res.status(errorObj.statusCode).send(errorObj);
+                    } else {
+                        //res.json({"message" : "Ride Updated", "RideUpdated" : Ride});
+                        res.status(201).json(ride);
+                    }
+                });
+            }
+        })
     });
 
     router.route('/rides')
